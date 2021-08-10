@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~font-awesome/css/font-awesome.css";
+
+.input-area > * {
+  width: 100%;
+}
+
+
+::-webkit-scrollbar
+{
+  width: 0px;  /* for vertical scrollbars */
+  height: 0px; /* for horizontal scrollbars */
+}
+.mat-accordion {
+  width: 60%;
+    margin: 0px 10px;
+}
+.mat-accordion .mat-expansion-panel{
+  margin: 0px 18px 5px;
+}
+.mat-expansion-panel-header {
+  background: rgb(245, 245, 245);
+  height: 48px !important;
+}
+.mat-expansion-panel-header-title {
+  text-decoration: underline;
+    color: #333;
+    font-weight: bold;
+}
+.mat-expansion-panel-body {
+  padding: 15px !important;
+  color: rgb(8,42,168);
+}
+.mat-expansion-panel-content{
+  border-top: 1px solid rgb(221, 221, 221);
+}
+.mat-expansion-panel-header.mat-expanded:focus, .mat-expansion-panel-header.mat-expanded:hover {
+  background: rgb(245, 245, 245) !important;
+}
+.mat-content { 
+  color: #535353;
+    font-weight: 700;
+}
+.mat-accordion .mat-expansion-panel:not(.mat-expanded), .mat-accordion .mat-expansion-panel:not(.mat-expansion-panel-spacing)  {
+      margin: 8px 18px;
+}
+
+label.star:hover {
+  transform: none !important;
+}
+label.star{
+  font-size: 25px !important;
+}
+input.star-5:checked ~ label.star:before {
+  text-shadow: none !important;
+}

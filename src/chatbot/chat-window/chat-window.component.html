@@ -1,0 +1,70 @@
+<div class="chat-window">
+  <div class='header'>
+    <img src='assets/images/BT_logo_46x46.png' />
+    <div class='headertxt'>Chat with us</div>
+    <div class='closebut'>
+      <i class="fa fa-window-minimize" (click)='minimize()' aria-hidden="true"></i>
+      <i class="fa fa-times" (click)='hidechatbot()' aria-hidden="true"></i>
+    </div>
+    <div class='projectheader'>
+      <b id="welcome-header" class="welcome-name">Hi !</b>
+      <h6 class="heading-content"> I'm your Capacity Planning Personal Assistant. I can
+        help you with CP related queries. Please select or enter option from quick link below to
+        proceed.
+      </h6>
+    </div>
+
+  </div>
+  <!-- #msgArea -->
+  <div class="msgArea" #msgArea *ngIf='!hidemsgarea'>
+    <div class="msgdiv">
+      <ng-container *ngFor="let msg of message; let i = index;">
+        <chat-msg [msg]="{text: msg.text,sendBy: msg.sendBy,button: msg.button,question:msg.question,morebuttonenable:msg.moreButton}" [checkcountinput]='checkcountofbutton' [initialbuttoncount]='initialbuttoncount'  [loading]='loading'
+          [selectedbuttons]='selectedbuttons' (buttontext)='buttontext($event)' (moreEventemit)='moreEventemit($event)'></chat-msg>
+      </ng-container>
+    </div>
+    
+    <div *ngIf='loading'>
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <div class="full-width">
+    <div id="chatbox">
+      <input autocomplete='off' #input matInput placeholder="Start Conversation" [(ngModel)]="inputmsg" (keypress)="userinput($event)"/>
+      <button id="btnSend" name="btnSend" (click)="userselection(input.value)" type="button" class="icon2-arrow submit">
+        <i class="fa fa-paper-plane"></i></button>
+    </div>
+  </div>
+    <div>
+     <div class='fbbtndiv' *ngIf='!showfeedback'>
+      <button type="button" class="btn btn-success" (click)='showfeedbackarea()'>Feedback</button>
+     </div>
+      <div class='feedbackdiv' *ngIf='showfeedback'>
+        <span id='spantxt'>Enter Message: </span>  
+        <textarea #message>
+
+        </textarea>
+        <form [formGroup]="form">
+            <div class="stars">
+              <ngx-star-rating [(ngModel)]="rating3" formControlName="rating1" [id]="'rating'"></ngx-star-rating>
+           
+            </div>
+         
+        </form>
+        <div class='fbbtndiv'>
+          <button type="button" class="btn btn-success" (click)='submitfeedback(message.value,form.value.rating1)'>Submit</button>
+         </div>
+        
+      </div>
+       <!-- <div>Rating: {{form.value.rating1}}</div> -->
+    </div>
+</div>
+<!--   
+  <ng-template  #defaultMsgTemplate let-text="text" let-object="object" let-sendBy="sendBy" let-button="button">
+    <chat-msg [msg]="{text: text,sendBy: sendBy,button: button}" [loading]='loading' (buttontext)='buttontext($event)' ></chat-msg>
+
+  </ng-template> -->

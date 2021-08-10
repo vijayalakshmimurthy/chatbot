@@ -1,0 +1,7 @@
+<div class="chatbotdiv">
+  <div *ngIf='onbuttonchecked'>
+    <chat-bot class="chat-window" [msg]="msg" (closechatbot)='onclosechatbot($event)' (selectedbutton)='selectedbutton($event)'>
+    </chat-bot>
+  </div>
+  <button class='btnstyle' *ngIf='!onbuttonchecked' (click)="openchatbot()">Ask Question</button>
+</div>

@@ -1,0 +1,60 @@
+<div [ngSwitch]="msg.sendBy">
+  <div *ngSwitchCase="'bot'" class="msg" [class.show]="isVisible">
+    <!-- <div class='carddiv' *ngIf='msg.text'>
+      <div class="card bot">
+          {{msg.text}}
+      </div>
+    </div> -->
+    <!-- <div class="botaccordian">
+        <mat-accordion >
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  This is the expansion title
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>This is the primary content of the panel.</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Self aware panel
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>I'm visible because I am open</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+    </div> -->
+
+    <div class='cardwithhtml bot' *ngIf='msg.text' [innerHTML]='msg.text'>
+    </div>
+
+    <div class='buttondiv'>
+      <ng-container *ngFor='let buttxt of msg.button'>
+        <button [ngClass]="selectedbuttons.indexOf(buttxt.buttontext) !== -1 ? 'selected' : ''"
+          (click)='buttonclick(buttxt.buttontext,"keyword")' [disabled]="selectedbuttons.length>4">{{buttxt.buttontext}}</button>
+      </ng-container>
+
+    </div>
+    <div class='buttondiv'>
+      <ng-container *ngFor='let buttxt of msg.question'>
+        <button [ngClass]="selectedbuttons.indexOf(buttxt.buttontext) !== -1 ? 'selected' : ''"
+          (click)='buttonclick(buttxt.buttontext,"question")' [disabled]="selectedbuttons.length>4">{{buttxt.buttontext}}</button>
+      </ng-container>
+    </div>
+    <div class='alignmorebtn' *ngIf='!msg.text && msg.morebuttonenable'>
+      <button class='btn btn-info' *ngIf='msg.morebuttonenable && !moreButCheck_bool'
+        (click)='moreButCheck(msg.button,msg.question)'>
+        More
+      </button>
+    </div>
+    <div class="time-stamp_bot" *ngIf='msg.length !== 0'>{{timeString}}</div>
+  </div>
+  <div *ngSwitchCase="'user'" class="msg user-msg" [class.show]="isVisible">
+    <div class='usermsgbody'>
+      <div class="card user">
+        {{msg.text}}
+      </div>
+    </div>
+
+    <div class="time-stamp">{{timeString}}</div>
